@@ -3,10 +3,14 @@ WORKDIR /app
 
 ENV TZ="Asia/Shanghai"
 ENV NODE_ENV=production
+COPY app.js ./
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
 RUN corepack enable
 RUN corepack prepare pnpm@latest --activate
 RUN pnpm i --frozen-lockfile
-COPY app.js ./
+
 
 EXPOSE 3000
 
